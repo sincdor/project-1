@@ -14,6 +14,8 @@ export function Home() {
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [searchValue, setSearchValue] = useState('');
 
+  //Comment
+
   const handleLoadPosts = useCallback(async (page, postsPerPage) => {
     const postsAndPhotos = await loadPosts();
     setPosts(postsAndPhotos.slice(page, postsPerPage));
