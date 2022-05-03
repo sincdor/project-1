@@ -12,7 +12,7 @@ export class Home extends Component {
     posts: [],
     allPosts: [],
     page: 0,
-    postsPerPage: 2,
+    postsPerPage: 10,
     searchValue: '',
   };
 
@@ -48,10 +48,10 @@ export class Home extends Component {
   };
 
   render() {
-    const { page, postsPerPage, allPosts, searchValue } = this.state;
+    const { posts, page, postsPerPage, allPosts, searchValue } = this.state;
     const noMorePosts = page + postsPerPage >= allPosts.length;
 
-    const filteredPosts = this.filterPosts(searchValue, allPosts);
+    const filteredPosts = this.filterPosts(searchValue, allPosts, posts);
 
     return (
       <section className='container'>
@@ -73,11 +73,12 @@ export class Home extends Component {
     );
   }
 
-  filterPosts(searchValue, posts) {
+  filterPosts(searchValue, allPosts, defaultPosts) {
+    console.log(defaultPosts.length);
     return searchValue
-      ? posts.filter((post) => {
+      ? allPosts.filter((post) => {
           return post.title.toLowerCase().includes(searchValue.toLowerCase());
         })
-      : posts;
+      : defaultPosts;
   }
 }
