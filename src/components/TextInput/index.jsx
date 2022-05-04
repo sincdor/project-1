@@ -7,6 +7,7 @@ export function TextInput({ onChange, value }) {
       type='search'
       onChange={onChange}
       value={value}
+      placeholder={"type your search"}
     />
   );
 }
