@@ -25,8 +25,7 @@ describe('<TextInput />', () => {
 
   it('should match snapshot', () => {
     const fn = jest.fn();
-    const {container} = render(<TextInput onChange={fn} value={'test'} />);
+    const { container } = render(<TextInput onChange={fn} value={'test'} />);
     expect(container).toMatchSnapshot();
-
   });
 });

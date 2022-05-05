@@ -11,7 +11,7 @@ export function Home() {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [page, setPage] = useState(0);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage] = useState(10);
   const [searchValue, setSearchValue] = useState('');
 
   const handleLoadPosts = useCallback(async (page, postsPerPage) => {
@@ -43,20 +43,16 @@ export function Home() {
   const filteredPosts = filterPosts(searchValue, allPosts, posts);
 
   return (
-    <section className='container'>
-      <div className='search-container'>
+    <section className="container">
+      <div className="search-container">
         {searchValue && <h1>Search value: {searchValue}</h1>}
         {<TextInput onChange={handleChange} value={searchValue} />}
       </div>
 
       {filteredPosts.length > 0 && <Posts posts={filteredPosts} />}
       {filteredPosts.length === 0 && <p>Não existem posts</p>}
-      <div className='button-container'>
-        <Button
-          text='Load more posts'
-          onClick={loadMorePosts}
-          disabled={noMorePosts}
-        />
+      <div className="button-container">
+        <Button text="Load more posts" onClick={loadMorePosts} disabled={noMorePosts} />
       </div>
     </section>
   );
@@ -64,8 +60,6 @@ export function Home() {
 
 function filterPosts(searchValue, allPosts, defaultPosts) {
   return searchValue
-    ? allPosts.filter((post) =>
-        post.title.toLowerCase().includes(searchValue.toLowerCase())
-      )
+    ? allPosts.filter((post) => post.title.toLowerCase().includes(searchValue.toLowerCase()))
     : defaultPosts;
 }
